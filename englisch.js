@@ -1,724 +1,431 @@
-const englishVocab = [
+var englishVocab = [
   // Grundschulwortschatz (S. 202–203)
-  { unit: "grundschule", sub: "gs_1", foreign: "$ (dollar)", german: "Dollar" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "€ (euro)", german: "Euro" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "£ (pound)", german: "Pfund" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "It's € 8.", german: "Es kostet 8 Euro." },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "a hot dog / an apple", german: "ein Hot Dog / ein Apfel" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "black/green tea", german: "Schwarzer/Grüner Tee" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "butter", german: "Butter" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "chicken", german: "Huhn, Hühnchen" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "chips", german: "Pommes Frites" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "ham", german: "Schinken" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "hot chocolate", german: "Heiße Schokolade" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "plum", german: "Pflaume" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "strawberry", german: "Erdbeere" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "Dear ...", german: "Liebe(r) ..." },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "Halloween", german: "Halloween" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "hamster", german: "Hamster" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "His/Her/Its name is ...", german: "Er/Sie/Es heißt ...; Sein/Ihr Name ist ..." },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "OK", german: "OK, okay; in Ordnung" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "pullover", german: "Pullover" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "(to) ride (a horse)", german: "reiten" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "(to) ride a bike", german: "Fahrrad fahren" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "skateboard", german: "Skateboard" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "snowboard", german: "Snowboard" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "sweet", german: "süß" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "sweets", german: "Süßigkeiten" },[cite: 14]
-  { unit: "grundschule", sub: "gs_1", foreign: "at my house", german: "bei mir zu Hause" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "at ... o'clock", german: "um ... Uhr" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Can you come to my party?", german: "Kannst du zu meiner Party kommen?" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Please come to my party!", german: "Bitte komm zu meiner Party!" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Can you play ...? / Can you ride a bike?", german: "Kannst du ... spielen? / Kannst du Rad fahren?" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Do you like ...? – Yes, I do. / No, I don't.", german: "Magst du ...? – Ja. / Nein." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "English is on ...", german: "Englisch ist am ..." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Happy Birthday!", german: "Herzlichen Glückwunsch zum Geburtstag!" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Happy Thanksgiving!", german: "Fröhliches Thanksgiving!" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Have you got any pets?", german: "Hast du Haustiere?" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "How much is it?", german: "Was kostet das? / Wie teuer ist das?" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "I go to school in the morning. / I go to school at ... o'clock.", german: "Ich gehe morgens in die Schule. / Ich gehe um ... Uhr in die Schule." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "I'm (very) happy/sad.", german: "Ich bin (sehr) glücklich/traurig." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "I'm fine, thanks.", german: "Mir geht es gut, danke." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "No, I'm sorry.", german: "Nein, tut mir leid." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Not quite.", german: "Nicht ganz." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "My classroom / My teacher / My school / My hobby is ...", german: "Mein Klassenzimmer / Mein/e Lehrer/in / Meine Schule / Mein Hobby ist ..." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "They are here / there / under / in front of / in / behind / next to ...", german: "Sie sind hier / dort / unter / vor / in / hinter / neben ..." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "This is my family / my pet / my room.", german: "Dies ist meine Familie / mein Haustier / mein Zimmer." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "We have a big/... house.", german: "Wir haben ein großes / ... Haus." },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "What's your hobby?", german: "Was ist dein Hobby?" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "When is ...? / When are ...?", german: "Wann ist ...? / Wann sind ...?" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Where is ...? / Where are ...?", german: "Wo ist ...? / Wo sind ...?" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Who is ...? / Who are ...?", german: "Wer ist ...? / Wer sind ...?" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "Why (not)?", german: "Warum (nicht)?" },[cite: 15]
-  { unit: "grundschule", sub: "gs_1", foreign: "You're welcome.", german: "Gern geschehen." },[cite: 15]
+  { unit: "grundschule", sub: "gs_1", foreign: "$ (dollar)", german: "Dollar" },
+  { unit: "grundschule", sub: "gs_1", foreign: "€ (euro)", german: "Euro" },
+  { unit: "grundschule", sub: "gs_1", foreign: "£ (pound)", german: "Pfund" },
+  { unit: "grundschule", sub: "gs_1", foreign: "It's € 8.", german: "Es kostet 8 Euro." },
+  { unit: "grundschule", sub: "gs_1", foreign: "a hot dog / an apple", german: "ein Hot Dog / ein Apfel" },
+  { unit: "grundschule", sub: "gs_1", foreign: "black/green tea", german: "Schwarzer/Grüner Tee" },
+  { unit: "grundschule", sub: "gs_1", foreign: "butter", german: "Butter" },
+  { unit: "grundschule", sub: "gs_1", foreign: "chicken", german: "Huhn, Hühnchen" },
+  { unit: "grundschule", sub: "gs_1", foreign: "chips", german: "Pommes Frites" },
+  { unit: "grundschule", sub: "gs_1", foreign: "ham", german: "Schinken" },
+  { unit: "grundschule", sub: "gs_1", foreign: "hot chocolate", german: "Heiße Schokolade" },
+  { unit: "grundschule", sub: "gs_1", foreign: "plum", german: "Pflaume" },
+  { unit: "grundschule", sub: "gs_1", foreign: "strawberry", german: "Erdbeere" },
+  { unit: "grundschule", sub: "gs_1", foreign: "Dear ...", german: "Liebe(r) ..." },
+  { unit: "grundschule", sub: "gs_1", foreign: "Halloween", german: "Halloween" },
+  { unit: "grundschule", sub: "gs_1", foreign: "hamster", german: "Hamster" },
+  { unit: "grundschule", sub: "gs_1", foreign: "His/Her/Its name is ...", german: "Er/Sie/Es heißt ...; Sein/Ihr Name ist ..." },
+  { unit: "grundschule", sub: "gs_1", foreign: "OK", german: "OK, okay; in Ordnung" },
+  { unit: "grundschule", sub: "gs_1", foreign: "pullover", german: "Pullover" },
+  { unit: "grundschule", sub: "gs_1", foreign: "(to) ride (a horse)", german: "reiten" },
+  { unit: "grundschule", sub: "gs_1", foreign: "(to) ride a bike", german: "Fahrrad fahren" },
+  { unit: "grundschule", sub: "gs_1", foreign: "skateboard", german: "Skateboard" },
+  { unit: "grundschule", sub: "gs_1", foreign: "snowboard", german: "Snowboard" },
+  { unit: "grundschule", sub: "gs_1", foreign: "sweet", german: "süß" },
+  { unit: "grundschule", sub: "gs_1", foreign: "sweets", german: "Süßigkeiten" },
+  { unit: "grundschule", sub: "gs_1", foreign: "at my house", german: "bei mir zu Hause" },
+  { unit: "grundschule", sub: "gs_1", foreign: "at ... o'clock", german: "um ... Uhr" },
+  { unit: "grundschule", sub: "gs_1", foreign: "Can you come to my party?", german: "Kannst du zu meiner Party kommen?" },
+  { unit: "grundschule", sub: "gs_1", foreign: "Please come to my party!", german: "Bitte komm zu meiner Party!" },
+  { unit: "grundschule", sub: "gs_1", foreign: "Can you play ...? / Can you ride a bike?", german: "Kannst du ... spielen? / Kannst du Rad fahren?" },
+  { unit: "grundschule", sub: "gs_1", foreign: "Do you like ...? – Yes, I do. / No, I don't.", german: "Magst du ...? – Ja. / Nein." },
+  { unit: "grundschule", sub: "gs_1", foreign: "English is on ...", german: "Englisch ist am ..." },
+  { unit: "grundschule", sub: "gs_1", foreign: "Happy Birthday!", german: "Herzlichen Glückwunsch zum Geburtstag!" },
+  { unit: "grundschule", sub: "gs_1", foreign: "Happy Thanksgiving!", german: "Fröhliches Thanksgiving!" },
+  { unit: "grundschule", sub: "gs_1", foreign: "Have you got any pets?", german: "Hast du Haustiere?" },
+  { unit: "grundschule", sub: "gs_1", foreign: "How much is it?", german: "Was kostet das? / Wie teuer ist das?" },
+  { unit: "grundschule", sub: "gs_1", foreign: "I go to school in the morning. / I go to school at ... o'clock.", german: "Ich gehe morgens in die Schule. / Ich gehe um ... Uhr in die Schule." },
+  { unit: "grundschule", sub: "gs_1", foreign: "I'm (very) happy/sad.", german: "Ich bin (sehr) glücklich/traurig." },
+  { unit: "grundschule", sub: "gs_1", foreign: "I'm fine, thanks.", german: "Mir geht es gut, danke." },
+  { unit: "grundschule", sub: "gs_1", foreign: "No, I'm sorry.", german: "Nein, tut mir leid." },
+  { unit: "grundschule", sub: "gs_1", foreign: "Not quite.", german: "Nicht ganz." },
+  { unit: "grundschule", sub: "gs_1", foreign: "My classroom / My teacher / My school / My hobby is ...", german: "Mein Klassenzimmer / Mein/e Lehrer/in / Meine Schule / Mein Hobby ist ..." },
+  { unit: "grundschule", sub: "gs_1", foreign: "They are here / there / under / in front of / in / behind / next to ...", german: "Sie sind hier / dort / unter / vor / in / hinter / neben ..." },
+  { unit: "grundschule", sub: "gs_1", foreign: "This is my family / my pet / my room.", german: "Dies ist meine Familie / mein Haustier / mein Zimmer." },
+  { unit: "grundschule", sub: "gs_1", foreign: "We have a big/... house.", german: "Wir haben ein großes / ... Haus." },
+  { unit: "grundschule", sub: "gs_1", foreign: "What's your hobby?", german: "Was ist dein Hobby?" },
+  { unit: "grundschule", sub: "gs_1", foreign: "When is ...? / When are ...?", german: "Wann ist ...? / Wann sind ...?" },
+  { unit: "grundschule", sub: "gs_1", foreign: "Where is ...? / Where are ...?", german: "Wo ist ...? / Wo sind ...?" },
+  { unit: "grundschule", sub: "gs_1", foreign: "Who is ...? / Who are ...?", german: "Wer ist ...? / Wer sind ...?" },
+  { unit: "grundschule", sub: "gs_1", foreign: "Why (not)?", german: "Warum (nicht)?" },
+  { unit: "grundschule", sub: "gs_1", foreign: "You're welcome.", german: "Gern geschehen." },
 
   // Here we go (S. 204–207)
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Here we go.", german: "Los geht's. / Jetzt geht's los." },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Hello.", german: "Hallo. / Grüß Gott." },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "My name is Silky.", german: "Ich heiße Silky. (wörtlich: Mein Name ist Silky.)" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "I'm a seal.", german: "Ich bin eine Robbe." },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "a seal", german: "eine Robbe" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "I'm two years old.", german: "Ich bin zwei Jahre alt." },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "one", german: "1" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "two", german: "2" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "three", german: "3" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "four", german: "4" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "five", german: "5" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "six", german: "6" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "seven", german: "7" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "eight", german: "8" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "nine", german: "9" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "ten", german: "10" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "eleven", german: "11" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "twelve", german: "12" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "thirteen", german: "13" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "fourteen", german: "14" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "I'm from Plymouth.", german: "Ich bin aus Plymouth. / Ich komme aus Plymouth." },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "in England", german: "in England" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "What about you?", german: "Und du? / Und was ist mit dir? Und ihr? / Und was ist mit euch?" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "what?", german: "was?" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "What's your name?", german: "Wie heißt du? / Wie heißt ihr?" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "your", german: "dein/e; euer/eure; Ihr/e" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Are you ...?", german: "Bist du ...?" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "boy", german: "Junge" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "or", german: "oder" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "girl", german: "Mädchen" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "How old are you?", german: "Wie alt bist du?" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Where are you from?", german: "Woher kommst du?" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "where?", german: "wo? / wohin?" },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Meet your classmates.", german: "Triff deine Mitschüler/innen. / Lerne deine Mitschüler/innen kennen." },[cite: 16]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "classmate", german: "Mitschüler/in, Klassenkamerad/in" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "card (to)", german: "Karte (an)" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "and", german: "und" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "I like ...", german: "Ich mag ..." },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "the", german: "der, die, das; die" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "colour", german: "Farbe" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "blue", german: "blau" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "red", german: "rot" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "yellow", german: "gelb" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "tip", german: "Tipp" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "(to) find", german: "finden" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "word", german: "Wort" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Let's go to England.", german: "Lass(t) uns nach England gehen / fahren." },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "(to) go", german: "gehen; fahren" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "to", german: "zu, nach" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "(to) come", german: "kommen" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "(to) see", german: "sehen; besuchen" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "hometown", german: "Heimatstadt" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "town", german: "Stadt" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Welcome to Plymouth.", german: "Willkommen in Plymouth." },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Silky's tour of Plymouth", german: "Silkys Rundgang / Rundfahrt / Reise durch Plymouth" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "river", german: "Fluss" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "castle", german: "Burg, Schloss" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "(swimming) pool", german: "Schwimmbad, Schwimmbecken" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "tower", german: "Turm" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "hill", german: "Hügel" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "boat", german: "Boot" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "sea", german: "Meer" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "big wheel", german: "Riesenrad" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "big", german: "groß" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "can", german: "können" },[cite: 17]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "on the map", german: "auf der Landkarte; auf dem Stadtplan" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "zoo", german: "Zoo" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "house", german: "Haus" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "tree", german: "Baum" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Silky's song", german: "Silkys Lied, Silkys Song" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "who?", german: "wer?" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Is it Monday?", german: "Ist es Montag?" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Monday", german: "Montag" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Tuesday", german: "Dienstag" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Wednesday", german: "Mittwoch" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Thursday", german: "Donnerstag" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Friday", german: "Freitag" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Saturday", german: "Samstag" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Sunday", german: "Sonntag" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "every day/colour/boat", german: "jeder Tag / jede Farbe / jedes Boot" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "great", german: "großartig" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "at", german: "(in Ortsangaben) an, bei, in; (in Zeitangaben) um, an" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "near", german: "in der Nähe von, nahe (bei)" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "on Monday/Tuesday/...", german: "am Montag / Dienstag / ..." },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "she's ...", german: "sie ist ..." },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "photo", german: "Foto" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Look, ...", german: "Sieh mal, ... / Schau mal, ..." },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "it's ...", german: "er / sie / es ist ..." },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "here", german: "hier; hierher" },[cite: 18]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Yes, that's right.", german: "Ja, das ist richtig. / Ja, das stimmt." },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "No, that's wrong.", german: "Nein, das ist falsch. / Nein, das stimmt nicht." },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "wrong", german: "falsch" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "my favourite day", german: "mein Lieblingstag" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "rhyme", german: "Reim; Vers" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "There are ...", german: "Es sind ... / Es gibt ..." },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "There's ...", german: "Es ist ... / Es gibt ..." },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "lots of ... / a lot of ...", german: "viel ..., viele ..." },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "animal", german: "Tier" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "Follow me.", german: "Folge mir. / Folgt mir." },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "me", german: "mich; mir" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "ant", german: "Ameise" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "bear", german: "Bär" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "bird", german: "Vogel" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "butterfly", german: "Schmetterling" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "cat", german: "Katze" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "dog", german: "Hund" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "elephant", german: "Elefant" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "frog", german: "Frosch" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "giraffe", german: "Giraffe" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "guinea pig", german: "Meerschweinchen" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "horse", german: "Pferd" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "lion", german: "Löwe" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "monkey", german: "Affe" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "pig", german: "Schwein" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "rabbit", german: "Kaninchen" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "rat", german: "Ratte" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "snake", german: "Schlange" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "whale", german: "Wal" },[cite: 19]
-  { unit: "here_we_go", sub: "hwg_1", foreign: "an elephant", german: "ein Elefant" },[cite: 19]
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Here we go.", german: "Los geht's. / Jetzt geht's los." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Hello.", german: "Hallo. / Grüß Gott." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "My name is Silky.", german: "Ich heiße Silky. (wörtlich: Mein Name ist Silky.)" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "I'm a seal.", german: "Ich bin eine Robbe." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "a seal", german: "eine Robbe" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "I'm two years old.", german: "Ich bin zwei Jahre alt." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "one", german: "1" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "two", german: "2" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "three", german: "3" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "four", german: "4" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "five", german: "5" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "six", german: "6" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "seven", german: "7" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "eight", german: "8" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "nine", german: "9" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "ten", german: "10" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "eleven", german: "11" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "twelve", german: "12" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "thirteen", german: "13" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "fourteen", german: "14" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "I'm from Plymouth.", german: "Ich bin aus Plymouth. / Ich komme aus Plymouth." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "in England", german: "in England" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "What about you?", german: "Und du? / Und was ist mit dir? Und ihr? / Und was ist mit euch?" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "what?", german: "was?" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "What's your name?", german: "Wie heißt du? / Wie heißt ihr?" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "your", german: "dein/e; euer/eure; Ihr/e" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Are you ...?", german: "Bist du ...?" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "boy", german: "Junge" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "or", german: "oder" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "girl", german: "Mädchen" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "How old are you?", german: "Wie alt bist du?" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Where are you from?", german: "Woher kommst du?" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "where?", german: "wo? / wohin?" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Meet your classmates.", german: "Triff deine Mitschüler/innen. / Lerne deine Mitschüler/innen kennen." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "classmate", german: "Mitschüler/in, Klassenkamerad/in" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "card (to)", german: "Karte (an)" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "and", german: "und" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "I like ...", german: "Ich mag ..." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "the", german: "der, die, das; die" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "colour", german: "Farbe" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "blue", german: "blau" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "red", german: "rot" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "yellow", german: "gelb" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "tip", german: "Tipp" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "(to) find", german: "finden" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "word", german: "Wort" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Let's go to England.", german: "Lass(t) uns nach England gehen / fahren." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "(to) go", german: "gehen; fahren" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "to", german: "zu, nach" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "(to) come", german: "kommen" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "(to) see", german: "sehen; besuchen" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "hometown", german: "Heimatstadt" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "town", german: "Stadt" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Welcome to Plymouth.", german: "Willkommen in Plymouth." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Silky's tour of Plymouth", german: "Silkys Rundgang / Rundfahrt / Reise durch Plymouth" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "river", german: "Fluss" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "castle", german: "Burg, Schloss" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "(swimming) pool", german: "Schwimmbad, Schwimmbecken" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "tower", german: "Turm" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "hill", german: "Hügel" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "boat", german: "Boot" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "sea", german: "Meer" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "big wheel", german: "Riesenrad" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "big", german: "groß" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "can", german: "können" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "on the map", german: "auf der Landkarte; auf dem Stadtplan" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "zoo", german: "Zoo" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "house", german: "Haus" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "tree", german: "Baum" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Silky's song", german: "Silkys Lied, Silkys Song" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "who?", german: "wer?" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Is it Monday?", german: "Ist es Montag?" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Monday", german: "Montag" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Tuesday", german: "Dienstag" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Wednesday", german: "Mittwoch" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Thursday", german: "Donnerstag" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Friday", german: "Freitag" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Saturday", german: "Samstag" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Sunday", german: "Sonntag" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "every day/colour/boat", german: "jeder Tag / jede Farbe / jedes Boot" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "great", german: "großartig" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "at", german: "(in Ortsangaben) an, bei, in; (in Zeitangaben) um, an" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "near", german: "in der Nähe von, nahe (bei)" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "on Monday/Tuesday/...", german: "am Montag / Dienstag / ..." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "she's ...", german: "sie ist ..." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "photo", german: "Foto" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Look, ...", german: "Sieh mal, ... / Schau mal, ..." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "it's ...", german: "er / sie / es ist ..." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "here", german: "hier; hierher" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Yes, that's right.", german: "Ja, das ist richtig. / Ja, das stimmt." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "No, that's wrong.", german: "Nein, das ist falsch. / Nein, das stimmt nicht." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "wrong", german: "falsch" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "my favourite day", german: "mein Lieblingstag" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "rhyme", german: "Reim; Vers" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "There are ...", german: "Es sind ... / Es gibt ..." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "There's ...", german: "Es ist ... / Es gibt ..." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "lots of ... / a lot of ...", german: "viel ..., viele ..." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "animal", german: "Tier" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "Follow me.", german: "Folge mir. / Folgt mir." },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "me", german: "mich; mir" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "ant", german: "Ameise" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "bear", german: "Bär" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "bird", german: "Vogel" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "butterfly", german: "Schmetterling" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "cat", german: "Katze" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "dog", german: "Hund" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "elephant", german: "Elefant" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "frog", german: "Frosch" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "giraffe", german: "Giraffe" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "guinea pig", german: "Meerschweinchen" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "horse", german: "Pferd" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "lion", german: "Löwe" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "monkey", german: "Affe" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "pig", german: "Schwein" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "rabbit", german: "Kaninchen" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "rat", german: "Ratte" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "snake", german: "Schlange" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "whale", german: "Wal" },
+  { unit: "here_we_go", sub: "hwg_1", foreign: "an elephant", german: "ein Elefant" },
 
   // Unit 1 – The first day at school (S. 210)
-  { unit: "unit1", sub: "u1_1", foreign: "What time is it?", german: "Wie spät ist es?" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "Thank you.", german: "Danke." },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "ten o'clock", german: "10 Uhr / 22 Uhr" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "half past ten", german: "halb elf (10.30 / 22.30)" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "quarter to eleven", german: "Viertel vor elf (10.45 / 22.45)" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "quarter past ten", german: "Viertel nach zehn (10.15 / 22.15)" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "See you later.", german: "Bis bald. / Bis nachher." },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "later", german: "später" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "the first day", german: "der erste Tag" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "at school", german: "in der Schule" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "kid", german: "Kind; Jugendliche(r)" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "her best friend", german: "ihr bester Freund / ihre beste Freundin" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "they're ...", german: "sie sind ..." },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "their first day", german: "ihr erster Tag" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "flat", german: "Wohnung" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "new", german: "neu" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "uniform", german: "(Schul-)Uniform" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "nice", german: "nett, schön" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "(to) know", german: "wissen; kennen" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "brother", german: "Bruder" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "sister", german: "Schwester" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "student", german: "Schüler/in; Student/in" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "but", german: "aber" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "he/she/it isn't ...", german: "er/sie/es ist nicht ...; er/sie/es ist kein/e ..." },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "his mum", german: "seine Mama" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "mum", german: "Mama, Mutti" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "mother", german: "Mutter" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "dad", german: "Papa, Vati" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "father", german: "Vater" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "navy", german: "Marine" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "(to) look at", german: "anschauen, ansehen" },[cite: 20]
-  { unit: "unit1", sub: "u1_1", foreign: "dark", german: "dunkel" },[cite: 20]
+  { unit: "unit1", sub: "u1_1", foreign: "What time is it?", german: "Wie spät ist es?" },
+  { unit: "unit1", sub: "u1_1", foreign: "Thank you.", german: "Danke." },
+  { unit: "unit1", sub: "u1_1", foreign: "ten o'clock", german: "10 Uhr / 22 Uhr" },
+  { unit: "unit1", sub: "u1_1", foreign: "half past ten", german: "halb elf (10.30 / 22.30)" },
+  { unit: "unit1", sub: "u1_1", foreign: "quarter to eleven", german: "Viertel vor elf (10.45 / 22.45)" },
+  { unit: "unit1", sub: "u1_1", foreign: "quarter past ten", german: "Viertel nach zehn (10.15 / 22.15)" },
+  { unit: "unit1", sub: "u1_1", foreign: "See you later.", german: "Bis bald. / Bis nachher." },
+  { unit: "unit1", sub: "u1_1", foreign: "later", german: "später" },
+  { unit: "unit1", sub: "u1_1", foreign: "the first day", german: "der erste Tag" },
+  { unit: "unit1", sub: "u1_1", foreign: "at school", german: "in der Schule" },
+  { unit: "unit1", sub: "u1_1", foreign: "kid", german: "Kind; Jugendliche(r)" },
+  { unit: "unit1", sub: "u1_1", foreign: "her best friend", german: "ihr bester Freund / ihre beste Freundin" },
+  { unit: "unit1", sub: "u1_1", foreign: "they're ...", german: "sie sind ..." },
+  { unit: "unit1", sub: "u1_1", foreign: "their first day", german: "ihr erster Tag" },
+  { unit: "unit1", sub: "u1_1", foreign: "flat", german: "Wohnung" },
+  { unit: "unit1", sub: "u1_1", foreign: "new", german: "neu" },
+  { unit: "unit1", sub: "u1_1", foreign: "uniform", german: "(Schul-)Uniform" },
+  { unit: "unit1", sub: "u1_1", foreign: "nice", german: "nett, schön" },
+  { unit: "unit1", sub: "u1_1", foreign: "(to) know", german: "wissen; kennen" },
+  { unit: "unit1", sub: "u1_1", foreign: "brother", german: "Bruder" },
+  { unit: "unit1", sub: "u1_1", foreign: "sister", german: "Schwester" },
+  { unit: "unit1", sub: "u1_1", foreign: "student", german: "Schüler/in; Student/in" },
+  { unit: "unit1", sub: "u1_1", foreign: "but", german: "aber" },
+  { unit: "unit1", sub: "u1_1", foreign: "he/she/it isn't ...", german: "er/sie/es ist nicht ...; er/sie/es ist kein/e ..." },
+  { unit: "unit1", sub: "u1_1", foreign: "his mum", german: "seine Mama" },
+  { unit: "unit1", sub: "u1_1", foreign: "mum", german: "Mama, Mutti" },
+  { unit: "unit1", sub: "u1_1", foreign: "mother", german: "Mutter" },
+  { unit: "unit1", sub: "u1_1", foreign: "dad", german: "Papa, Vati" },
+  { unit: "unit1", sub: "u1_1", foreign: "father", german: "Vater" },
+  { unit: "unit1", sub: "u1_1", foreign: "navy", german: "Marine" },
+  { unit: "unit1", sub: "u1_1", foreign: "(to) look at", german: "anschauen, ansehen" },
+  { unit: "unit1", sub: "u1_1", foreign: "dark", german: "dunkel" },
 
   // Unit 1 – Fortsetzung & Part A (S. 211–212)
-  { unit: "unit1", sub: "u1_a", foreign: "please", german: "bitte" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "You're late.", german: "Du bist spät dran. / Du bist zu spät." },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "(to) wait (for)", german: "warten (auf)" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "minute", german: "Minute" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "profile", german: "Profil; Beschreibung, Porträt" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "library", german: "Bibliothek, Bücherei" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "home", german: "Heim, Zuhause" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "before school/lessons", german: "vor der Schule (vor Schulbeginn) / vorm Unterricht" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "you aren't ...", german: "du bist nicht ...; du bist kein/e ...; ihr seid nicht ...; ihr seid kein/e ..." },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "there", german: "da, dort; dahin, dorthin" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "sad", german: "traurig" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "Don't go.", german: "Gehe nicht." },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "Bye.", german: "Servus. / Pfiati. / Auf Wiedersehen." },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "Watch out!", german: "Pass auf! / Vorsicht!" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "(I'm) sorry.", german: "Tut mir leid. / Entschuldigung." },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "So?", german: "Und? / Na und?" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "Nice to meet you.", german: "Freut mich, dich/euch/Sie kennenzulernen." },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "(to) hurry up", german: "sich beeilen" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "friendly", german: "freundlich" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "trainer", german: "Turnschuh" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "(to) forget", german: "vergessen" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "(to) wear", german: "tragen (Kleidung)" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "British", german: "britisch" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "different", german: "verschieden; anders" },[cite: 21]
-  { unit: "unit1", sub: "u1_a", foreign: "I don't like green.", german: "Ich mag Grün nicht. / Ich mag kein Grün." },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "Have a go.", german: "Versuch's mal." },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "language", german: "Sprache" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "form (of)", german: "Form (vom)" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "of", german: "von" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "long", german: "lang" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "short", german: "kurz" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "people", german: "Leute, Menschen" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "silly", german: "albern; blöd" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "sentence", german: "Satz" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "apostrophe", german: "Apostroph, Auslassungszeichen" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "ball", german: "Ball" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "help", german: "Hilfe" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "(to) help", german: "helfen" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "after the s", german: "nach dem s" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "speaker", german: "Sprecher/in" },[cite: 22]
-  { unit: "unit1", sub: "u1_a", foreign: "(to) speak", german: "sprechen" },[cite: 22]
+  { unit: "unit1", sub: "u1_a", foreign: "please", german: "bitte" },
+  { unit: "unit1", sub: "u1_a", foreign: "You're late.", german: "Du bist spät dran. / Du bist zu spät." },
+  { unit: "unit1", sub: "u1_a", foreign: "(to) wait (for)", german: "warten (auf)" },
+  { unit: "unit1", sub: "u1_a", foreign: "minute", german: "Minute" },
+  { unit: "unit1", sub: "u1_a", foreign: "profile", german: "Profil; Beschreibung, Porträt" },
+  { unit: "unit1", sub: "u1_a", foreign: "library", german: "Bibliothek, Bücherei" },
+  { unit: "unit1", sub: "u1_a", foreign: "home", german: "Heim, Zuhause" },
+  { unit: "unit1", sub: "u1_a", foreign: "before school/lessons", german: "vor der Schule (vor Schulbeginn) / vorm Unterricht" },
+  { unit: "unit1", sub: "u1_a", foreign: "you aren't ...", german: "du bist nicht ...; du bist kein/e ...; ihr seid nicht ...; ihr seid kein/e ..." },
+  { unit: "unit1", sub: "u1_a", foreign: "there", german: "da, dort; dahin, dorthin" },
+  { unit: "unit1", sub: "u1_a", foreign: "sad", german: "traurig" },
+  { unit: "unit1", sub: "u1_a", foreign: "Don't go.", german: "Gehe nicht." },
+  { unit: "unit1", sub: "u1_a", foreign: "Bye.", german: "Servus. / Pfiati. / Auf Wiedersehen." },
+  { unit: "unit1", sub: "u1_a", foreign: "Watch out!", german: "Pass auf! / Vorsicht!" },
+  { unit: "unit1", sub: "u1_a", foreign: "(I'm) sorry.", german: "Tut mir leid. / Entschuldigung." },
+  { unit: "unit1", sub: "u1_a", foreign: "So?", german: "Und? / Na und?" },
+  { unit: "unit1", sub: "u1_a", foreign: "Nice to meet you.", german: "Freut mich, dich/euch/Sie kennenzulernen." },
+  { unit: "unit1", sub: "u1_a", foreign: "(to) hurry up", german: "sich beeilen" },
+  { unit: "unit1", sub: "u1_a", foreign: "friendly", german: "freundlich" },
+  { unit: "unit1", sub: "u1_a", foreign: "trainer", german: "Turnschuh" },
+  { unit: "unit1", sub: "u1_a", foreign: "(to) forget", german: "vergessen" },
+  { unit: "unit1", sub: "u1_a", foreign: "(to) wear", german: "tragen (Kleidung)" },
+  { unit: "unit1", sub: "u1_a", foreign: "British", german: "britisch" },
+  { unit: "unit1", sub: "u1_a", foreign: "different", german: "verschieden; anders" },
+  { unit: "unit1", sub: "u1_a", foreign: "I don't like green.", german: "Ich mag Grün nicht. / Ich mag kein Grün." },
+  { unit: "unit1", sub: "u1_a", foreign: "Have a go.", german: "Versuch's mal." },
+  { unit: "unit1", sub: "u1_a", foreign: "language", german: "Sprache" },
+  { unit: "unit1", sub: "u1_a", foreign: "form (of)", german: "Form (vom)" },
+  { unit: "unit1", sub: "u1_a", foreign: "of", german: "von" },
+  { unit: "unit1", sub: "u1_a", foreign: "long", german: "lang" },
+  { unit: "unit1", sub: "u1_a", foreign: "short", german: "kurz" },
+  { unit: "unit1", sub: "u1_a", foreign: "people", german: "Leute, Menschen" },
+  { unit: "unit1", sub: "u1_a", foreign: "silly", german: "albern; blöd" },
+  { unit: "unit1", sub: "u1_a", foreign: "sentence", german: "Satz" },
+  { unit: "unit1", sub: "u1_a", foreign: "apostrophe", german: "Apostroph, Auslassungszeichen" },
+  { unit: "unit1", sub: "u1_a", foreign: "ball", german: "Ball" },
+  { unit: "unit1", sub: "u1_a", foreign: "help", german: "Hilfe" },
+  { unit: "unit1", sub: "u1_a", foreign: "(to) help", german: "helfen" },
+  { unit: "unit1", sub: "u1_a", foreign: "after the s", german: "nach dem s" },
+  { unit: "unit1", sub: "u1_a", foreign: "speaker", german: "Sprecher/in" },
+  { unit: "unit1", sub: "u1_a", foreign: "(to) speak", german: "sprechen" },
 
   // Unit 1 – Part B (S. 212–214)
-  { unit: "unit1", sub: "u1_b", foreign: "Miss Bell", german: "Frau Bell (übliche Anrede von Lehrerinnen)" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) play", german: "spielen" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "Good morning.", german: "Guten Morgen." },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "so", german: "also; deshalb, daher" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) come in", german: "hereinkommen" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) start", german: "anfangen, beginnen" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) throw", german: "werfen" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) ask", german: "fragen" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) catch", german: "fangen" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) answer", german: "antworten; beantworten" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "answer", german: "Antwort" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "about yourself", german: "über dich selbst" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "birthday", german: "Geburtstag" },[cite: 22]
-  { unit: "unit1", sub: "u1_b", foreign: "September", german: "September" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) do", german: "machen, tun" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) live", german: "leben; wohnen" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "at 14 Dean Street", german: "in der Deanstraße 14" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "then", german: "dann" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "again", german: "wieder; noch einmal" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "timetable", german: "Stundenplan" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) think (about)", german: "nachdenken (über)" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "(school) subject", german: "Schulfach" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "art", german: "Kunst" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "design and technology", german: "Design und Technik" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "French", german: "Französisch" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "geography", german: "Geografie" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "history", german: "Geschichte" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "ICT", german: "Informations- und Kommunikationstechnologie" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "maths", german: "Mathematik" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "music", german: "Musik" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "PE", german: "Sportunterricht, Turnen" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "religion", german: "Religion" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "science", german: "Naturwissenschaft" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "hour", german: "Stunde" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "lunch", german: "Mittagessen" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "break", german: "Pause" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) learn", german: "lernen" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "month", german: "Monat" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "January", german: "Januar" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "February", german: "Februar" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "March", german: "März" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "April", german: "April" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "May", german: "Mai" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "June", german: "Juni" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "July", german: "Juli" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "August", german: "August" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "October", german: "Oktober" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "November", german: "November" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "December", german: "Dezember" },[cite: 23]
-  { unit: "unit1", sub: "u1_b", foreign: "first", german: "erste(r, s)" },[cite: 24]
-  { unit: "unit1", sub: "u1_b", foreign: "second", german: "zweite(r, s)" },[cite: 24]
-  { unit: "unit1", sub: "u1_b", foreign: "third", german: "dritte(r, s)" },[cite: 24]
-  { unit: "unit1", sub: "u1_b", foreign: "fourth", german: "vierte(r, s)" },[cite: 24]
-  { unit: "unit1", sub: "u1_b", foreign: "fifth", german: "fünfte(r, s)" },[cite: 24]
-  { unit: "unit1", sub: "u1_b", foreign: "when?", german: "wann?" },[cite: 24]
-  { unit: "unit1", sub: "u1_b", foreign: "(to) write", german: "schreiben" },[cite: 24]
+  { unit: "unit1", sub: "u1_b", foreign: "Miss Bell", german: "Frau Bell (übliche Anrede von Lehrerinnen)" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) play", german: "spielen" },
+  { unit: "unit1", sub: "u1_b", foreign: "Good morning.", german: "Guten Morgen." },
+  { unit: "unit1", sub: "u1_b", foreign: "so", german: "also; deshalb, daher" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) come in", german: "hereinkommen" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) start", german: "anfangen, beginnen" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) throw", german: "werfen" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) ask", german: "fragen" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) catch", german: "fangen" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) answer", german: "antworten; beantworten" },
+  { unit: "unit1", sub: "u1_b", foreign: "answer", german: "Antwort" },
+  { unit: "unit1", sub: "u1_b", foreign: "about yourself", german: "über dich selbst" },
+  { unit: "unit1", sub: "u1_b", foreign: "birthday", german: "Geburtstag" },
+  { unit: "unit1", sub: "u1_b", foreign: "September", german: "September" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) do", german: "machen, tun" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) live", german: "leben; wohnen" },
+  { unit: "unit1", sub: "u1_b", foreign: "at 14 Dean Street", german: "in der Deanstraße 14" },
+  { unit: "unit1", sub: "u1_b", foreign: "then", german: "dann" },
+  { unit: "unit1", sub: "u1_b", foreign: "again", german: "wieder; noch einmal" },
+  { unit: "unit1", sub: "u1_b", foreign: "timetable", german: "Stundenplan" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) think (about)", german: "nachdenken (über)" },
+  { unit: "unit1", sub: "u1_b", foreign: "(school) subject", german: "Schulfach" },
+  { unit: "unit1", sub: "u1_b", foreign: "art", german: "Kunst" },
+  { unit: "unit1", sub: "u1_b", foreign: "design and technology", german: "Design und Technik" },
+  { unit: "unit1", sub: "u1_b", foreign: "French", german: "Französisch" },
+  { unit: "unit1", sub: "u1_b", foreign: "geography", german: "Geografie" },
+  { unit: "unit1", sub: "u1_b", foreign: "history", german: "Geschichte" },
+  { unit: "unit1", sub: "u1_b", foreign: "ICT", german: "Informations- und Kommunikationstechnologie" },
+  { unit: "unit1", sub: "u1_b", foreign: "maths", german: "Mathematik" },
+  { unit: "unit1", sub: "u1_b", foreign: "music", german: "Musik" },
+  { unit: "unit1", sub: "u1_b", foreign: "PE", german: "Sportunterricht, Turnen" },
+  { unit: "unit1", sub: "u1_b", foreign: "religion", german: "Religion" },
+  { unit: "unit1", sub: "u1_b", foreign: "science", german: "Naturwissenschaft" },
+  { unit: "unit1", sub: "u1_b", foreign: "hour", german: "Stunde" },
+  { unit: "unit1", sub: "u1_b", foreign: "lunch", german: "Mittagessen" },
+  { unit: "unit1", sub: "u1_b", foreign: "break", german: "Pause" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) learn", german: "lernen" },
+  { unit: "unit1", sub: "u1_b", foreign: "month", german: "Monat" },
+  { unit: "unit1", sub: "u1_b", foreign: "January", german: "Januar" },
+  { unit: "unit1", sub: "u1_b", foreign: "February", german: "Februar" },
+  { unit: "unit1", sub: "u1_b", foreign: "March", german: "März" },
+  { unit: "unit1", sub: "u1_b", foreign: "April", german: "April" },
+  { unit: "unit1", sub: "u1_b", foreign: "May", german: "Mai" },
+  { unit: "unit1", sub: "u1_b", foreign: "June", german: "Juni" },
+  { unit: "unit1", sub: "u1_b", foreign: "July", german: "Juli" },
+  { unit: "unit1", sub: "u1_b", foreign: "August", german: "August" },
+  { unit: "unit1", sub: "u1_b", foreign: "October", german: "Oktober" },
+  { unit: "unit1", sub: "u1_b", foreign: "November", german: "November" },
+  { unit: "unit1", sub: "u1_b", foreign: "December", german: "Dezember" },
+  { unit: "unit1", sub: "u1_b", foreign: "first", german: "erste(r, s)" },
+  { unit: "unit1", sub: "u1_b", foreign: "second", german: "zweite(r, s)" },
+  { unit: "unit1", sub: "u1_b", foreign: "third", german: "dritte(r, s)" },
+  { unit: "unit1", sub: "u1_b", foreign: "fourth", german: "vierte(r, s)" },
+  { unit: "unit1", sub: "u1_b", foreign: "fifth", german: "fünfte(r, s)" },
+  { unit: "unit1", sub: "u1_b", foreign: "when?", german: "wann?" },
+  { unit: "unit1", sub: "u1_b", foreign: "(to) write", german: "schreiben" },
 
   // Unit 1 – Part C & Text (S. 214–215)
-  { unit: "unit1", sub: "u1_c", foreign: "(to) count", german: "zählen" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "Are there any ...?", german: "Gibt es (irgendwelche) ...?" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) spell", german: "buchstabieren" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) work", german: "arbeiten" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) read", german: "lesen" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) watch", german: "sich etwas anschauen; beobachten" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) fall asleep", german: "einschlafen" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "place", german: "Ort, Platz, Stelle" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "this place/break/subject", german: "dieser Ort / diese Pause / dieses Fach" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "these places/breaks/subjects", german: "diese Orte / Pausen / Fächer" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "I don't know.", german: "Ich weiß (es) nicht." },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "them", german: "sie; ihnen" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "What colour ...?", german: "Welche Farbe ...?" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) eat", german: "essen" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "gym", german: "Turnhalle" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "canteen", german: "Kantine, (Schul-)Mensa" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "We're finished.", german: "Wir sind fertig." },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "back", german: "zurück" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "we can't ...", german: "wir können nicht ..." },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) win", german: "gewinnen" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "him", german: "ihn; ihm" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "winner", german: "Gewinner/in, Sieger/in" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "everyday", german: "Alltags-" },[cite: 24]
-  { unit: "unit1", sub: "u1_c", foreign: "workbook", german: "Arbeitsheft" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "page", german: "Seite" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "toilet", german: "Toilette" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "What's for homework?", german: "Was haben wir als Hausaufgabe auf?" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "homework", german: "Hausaufgabe(n)" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "There aren't any ...", german: "Es gibt / sind keine ..." },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "in German/English", german: "auf Deutsch / Englisch" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "pronunciation", german: "Aussprache" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "sound", german: "Laut" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "how to do sth.", german: "wie man etwas macht / machen kann / machen soll" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) link", german: "verbinden, verknüpfen" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "group (of)", german: "Gruppe" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "chaos", german: "Chaos" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "corner shop", german: "Laden an der Ecke; Tante-Emma-Laden" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "master", german: "Meister/in" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "yoghurt", german: "Joghurt" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "little", german: "klein" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "always", german: "immer" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "that group", german: "die Gruppe (dort), jene Gruppe" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "those groups", german: "die Gruppen (dort), jene Gruppen" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) swim", german: "schwimmen" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "like boys", german: "wie Jungen" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "swimmer", german: "Schwimmer/in" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) be good at kung fu", german: "gut sein in Kung-Fu" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "feeling", german: "Gefühl" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "angry", german: "wütend" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "happy", german: "glücklich, froh" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "surprised", german: "überrascht" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "(to) act out", german: "vorspielen" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "the next picture", german: "das nächste Bild" },[cite: 25]
-  { unit: "unit1", sub: "u1_c", foreign: "man", german: "Mann" },[cite: 25]
+  { unit: "unit1", sub: "u1_c", foreign: "(to) count", german: "zählen" },
+  { unit: "unit1", sub: "u1_c", foreign: "Are there any ...?", german: "Gibt es (irgendwelche) ...?" },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) spell", german: "buchstabieren" },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) work", german: "arbeiten" },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) read", german: "lesen" },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) watch", german: "sich etwas anschauen; beobachten" },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) fall asleep", german: "einschlafen" },
+  { unit: "unit1", sub: "u1_c", foreign: "place", german: "Ort, Platz, Stelle" },
+  { unit: "unit1", sub: "u1_c", foreign: "this place/break/subject", german: "dieser Ort / diese Pause / dieses Fach" },
+  { unit: "unit1", sub: "u1_c", foreign: "these places/breaks/subjects", german: "diese Orte / Pausen / Fächer" },
+  { unit: "unit1", sub: "u1_c", foreign: "I don't know.", german: "Ich weiß (es) nicht." },
+  { unit: "unit1", sub: "u1_c", foreign: "them", german: "sie; ihnen" },
+  { unit: "unit1", sub: "u1_c", foreign: "What colour ...?", german: "Welche Farbe ...?" },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) eat", german: "essen" },
+  { unit: "unit1", sub: "u1_c", foreign: "gym", german: "Turnhalle" },
+  { unit: "unit1", sub: "u1_c", foreign: "canteen", german: "Kantine, (Schul-)Mensa" },
+  { unit: "unit1", sub: "u1_c", foreign: "We're finished.", german: "Wir sind fertig." },
+  { unit: "unit1", sub: "u1_c", foreign: "back", german: "zurück" },
+  { unit: "unit1", sub: "u1_c", foreign: "we can't ...", german: "wir können nicht ..." },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) win", german: "gewinnen" },
+  { unit: "unit1", sub: "u1_c", foreign: "him", german: "ihn; ihm" },
+  { unit: "unit1", sub: "u1_c", foreign: "winner", german: "Gewinner/in, Sieger/in" },
+  { unit: "unit1", sub: "u1_c", foreign: "everyday", german: "Alltags-" },
+  { unit: "unit1", sub: "u1_c", foreign: "workbook", german: "Arbeitsheft" },
+  { unit: "unit1", sub: "u1_c", foreign: "page", german: "Seite" },
+  { unit: "unit1", sub: "u1_c", foreign: "toilet", german: "Toilette" },
+  { unit: "unit1", sub: "u1_c", foreign: "What's for homework?", german: "Was haben wir als Hausaufgabe auf?" },
+  { unit: "unit1", sub: "u1_c", foreign: "homework", german: "Hausaufgabe(n)" },
+  { unit: "unit1", sub: "u1_c", foreign: "There aren't any ...", german: "Es gibt / sind keine ..." },
+  { unit: "unit1", sub: "u1_c", foreign: "in German/English", german: "auf Deutsch / Englisch" },
+  { unit: "unit1", sub: "u1_c", foreign: "pronunciation", german: "Aussprache" },
+  { unit: "unit1", sub: "u1_c", foreign: "sound", german: "Laut" },
+  { unit: "unit1", sub: "u1_c", foreign: "how to do sth.", german: "wie man etwas macht / machen kann / machen soll" },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) link", german: "verbinden, verknüpfen" },
+  { unit: "unit1", sub: "u1_c", foreign: "group (of)", german: "Gruppe" },
+  { unit: "unit1", sub: "u1_c", foreign: "chaos", german: "Chaos" },
+  { unit: "unit1", sub: "u1_c", foreign: "corner shop", german: "Laden an der Ecke; Tante-Emma-Laden" },
+  { unit: "unit1", sub: "u1_c", foreign: "master", german: "Meister/in" },
+  { unit: "unit1", sub: "u1_c", foreign: "yoghurt", german: "Joghurt" },
+  { unit: "unit1", sub: "u1_c", foreign: "little", german: "klein" },
+  { unit: "unit1", sub: "u1_c", foreign: "always", german: "immer" },
+  { unit: "unit1", sub: "u1_c", foreign: "that group", german: "die Gruppe (dort), jene Gruppe" },
+  { unit: "unit1", sub: "u1_c", foreign: "those groups", german: "die Gruppen (dort), jene Gruppen" },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) swim", german: "schwimmen" },
+  { unit: "unit1", sub: "u1_c", foreign: "like boys", german: "wie Jungen" },
+  { unit: "unit1", sub: "u1_c", foreign: "swimmer", german: "Schwimmer/in" },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) be good at kung fu", german: "gut sein in Kung-Fu" },
+  { unit: "unit1", sub: "u1_c", foreign: "feeling", german: "Gefühl" },
+  { unit: "unit1", sub: "u1_c", foreign: "angry", german: "wütend" },
+  { unit: "unit1", sub: "u1_c", foreign: "happy", german: "glücklich, froh" },
+  { unit: "unit1", sub: "u1_c", foreign: "surprised", german: "überrascht" },
+  { unit: "unit1", sub: "u1_c", foreign: "(to) act out", german: "vorspielen" },
+  { unit: "unit1", sub: "u1_c", foreign: "the next picture", german: "das nächste Bild" },
+  { unit: "unit1", sub: "u1_c", foreign: "man", german: "Mann" },
 
   // Unit 2 – Einstieg (S. 217)
-  { unit: "unit2", sub: "u2_intro", foreign: "road", german: "Straße" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "garden", german: "Garten" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "upstairs", german: "oben; nach oben" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "downstairs", german: "unten; nach unten" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "bedroom", german: "Schlafzimmer" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "bathroom", german: "Badezimmer, Bad" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "dining room", german: "Esszimmer" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "kitchen", german: "Küche" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "living room", german: "Wohnzimmer" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "armchair", german: "Sessel" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "bed", german: "Bett" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "lamp", german: "Lampe" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "shelf", german: "Regal" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "sofa", german: "Sofa" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "table", german: "Tisch" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "toy", german: "Spielzeug" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "TV", german: "Fernsehen, Fernsehgerät" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "(to) watch TV", german: "fernsehen" },[cite: 1]
-  { unit: "unit2", sub: "u2_intro", foreign: "small", german: "klein" },[cite: 1]
+  { unit: "unit2", sub: "u2_intro", foreign: "road", german: "Straße" },
+  { unit: "unit2", sub: "u2_intro", foreign: "garden", german: "Garten" },
+  { unit: "unit2", sub: "u2_intro", foreign: "upstairs", german: "oben; nach oben" },
+  { unit: "unit2", sub: "u2_intro", foreign: "downstairs", german: "unten; nach unten" },
+  { unit: "unit2", sub: "u2_intro", foreign: "bedroom", german: "Schlafzimmer" },
+  { unit: "unit2", sub: "u2_intro", foreign: "bathroom", german: "Badezimmer, Bad" },
+  { unit: "unit2", sub: "u2_intro", foreign: "dining room", german: "Esszimmer" },
+  { unit: "unit2", sub: "u2_intro", foreign: "kitchen", german: "Küche" },
+  { unit: "unit2", sub: "u2_intro", foreign: "living room", german: "Wohnzimmer" },
+  { unit: "unit2", sub: "u2_intro", foreign: "armchair", german: "Sessel" },
+  { unit: "unit2", sub: "u2_intro", foreign: "bed", german: "Bett" },
+  { unit: "unit2", sub: "u2_intro", foreign: "lamp", german: "Lampe" },
+  { unit: "unit2", sub: "u2_intro", foreign: "shelf", german: "Regal" },
+  { unit: "unit2", sub: "u2_intro", foreign: "sofa", german: "Sofa" },
+  { unit: "unit2", sub: "u2_intro", foreign: "table", german: "Tisch" },
+  { unit: "unit2", sub: "u2_intro", foreign: "toy", german: "Spielzeug" },
+  { unit: "unit2", sub: "u2_intro", foreign: "TV", german: "Fernsehen, Fernsehgerät" },
+  { unit: "unit2", sub: "u2_intro", foreign: "(to) watch TV", german: "fernsehen" },
+  { unit: "unit2", sub: "u2_intro", foreign: "small", german: "klein" },
 
   // Unit 2 – Part A (S. 217–219)
-  { unit: "unit2", sub: "u2_a", foreign: "(to) wake up", german: "aufwachen" },[cite: 1]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) have breakfast", german: "frühstücken" },[cite: 1, 2]
-  { unit: "unit2", sub: "u2_a", foreign: "a plate of ...", german: "ein Teller ..." },[cite: 1]
-  { unit: "unit2", sub: "u2_a", foreign: "crab", german: "Krebs" },[cite: 1]
-  { unit: "unit2", sub: "u2_a", foreign: "in the afternoon", german: "nachmittags, am Nachmittag" },[cite: 1, 2]
-  { unit: "unit2", sub: "u2_a", foreign: "in the evening", german: "abends, am Abend" },[cite: 1, 2]
-  { unit: "unit2", sub: "u2_a", foreign: "in the morning", german: "morgens, am Morgen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "on Monday", german: "am Montag" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "on Mondays", german: "montags, an Montagen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "fish", german: "Fisch" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "dinner", german: "Abendessen, Abendbrot" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) have lunch", german: "zu Mittag essen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) have dinner", german: "zu Abend essen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) sit", german: "sitzen; sich setzen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "rock", german: "Fels, Felsen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) text a friend", german: "einem Freund / einer Freundin eine SMS schicken" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "after that", german: "danach" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "her", german: "sie; ihr" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) go sailing", german: "segeln; segeln gehen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "into the kitchen", german: "in die Küche (hinein)" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) make", german: "machen; herstellen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "a cup of ...", german: "eine Tasse ..." },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "tea", german: "Tee" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "paper", german: "Papier; Zeitung" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "at the weekend", german: "am Wochenende" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "at night", german: "nachts, in der Nacht" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) sleep", german: "schlafen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) feed", german: "füttern" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "no ...", german: "kein ..., keine ..." },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "us", german: "uns" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "of course", german: "natürlich, selbstverständlich" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "basket", german: "Korb" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "floor", german: "Fußboden" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "trophy", german: "Pokal; Trophäe" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "away", german: "weg, fort" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "mad", german: "verrückt" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) think", german: "denken, glauben" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "so cool/nice/...", german: "so cool/nett/..." },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) go for a walk", german: "einen Spaziergang machen, spazieren gehen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "person", german: "Person" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) run", german: "rennen, laufen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) go shopping", german: "einkaufen gehen" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "phrase", german: "Ausdruck, (Rede-)Wendung" },[cite: 2]
-  { unit: "unit2", sub: "u2_a", foreign: "usually", german: "meistens, normalerweise, gewöhnlich" },[cite: 3]
-  { unit: "unit2", sub: "u2_a", foreign: "sometimes", german: "manchmal" },[cite: 3]
-  { unit: "unit2", sub: "u2_a", foreign: "(to) have fun", german: "Spaß haben, sich amüsieren" },[cite: 3]
-
-  // Unit 2 – Part B (S. 219)
-  { unit: "unit2", sub: "u2_b", foreign: "uncle", german: "Onkel" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "aunt", german: "Tante" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "sport", german: "Sport; Sportart" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "(to) do sport", german: "Sport treiben" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "near here", german: "(hier) in der Nähe" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "he doesn't have time", german: "er hat keine Zeit" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "only", german: "nur, bloß" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "often", german: "oft" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "(to) tell (about)", german: "erzählen (von); berichten (über)" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "all", german: "alles; alle" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "..., you know.", german: "..., weißt du. / ..., wissen Sie." },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "cousin", german: "Cousin, Cousine" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "grandma", german: "Oma" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "farm", german: "Bauernhof, Farm" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "Well, ...", german: "Nun, ... / Also, ... / Na ja, ..." },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "till 12 o'clock", german: "bis 12 Uhr" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "They've got a house ...", german: "Sie haben ein Haus ..." },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "family tree", german: "(Familien-)Stammbaum" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "dead", german: "tot" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "divorced", german: "geschieden" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "married (to)", german: "verheiratet (mit)" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "single", german: "ledig, alleinstehend" },[cite: 3]
-  { unit: "unit2", sub: "u2_b", foreign: "twins", german: "Zwillinge" },[cite: 3]
-
-  // Unit 2 – Part C (S. 220–221)
-  { unit: "unit2", sub: "u2_c", foreign: "What's for lunch?", german: "Was gibt es zum Mittagessen?" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "roast beef", german: "Rinderbraten" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "potato", german: "Kartoffel" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "yummy", german: "lecker" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "vegetables", german: "Gemüse" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "soup", german: "Suppe" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "dessert", german: "Nachtisch, Nachspeise" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "fruit salad", german: "Obstsalat" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "ice cream", german: "(Speise-)Eis" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "scone", german: "kleines rundes Milchbrötchen, leicht süß, oft mit Rosinen" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "What would you like?", german: "Was hättest du gern? / Was möchtest du?" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "I'd like ...", german: "Ich hätte gern ... / Ich möchte ..." },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "What would you like to eat?", german: "Was möchtest du essen?" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "hot", german: "heiß" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "cold", german: "kalt" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "(to) drink", german: "trinken" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "drink", german: "Getränk" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "sandwich", german: "Sandwich, (zusammengeklapptes) belegtes Brot" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "cake", german: "Kuchen" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "cream", german: "Sahne" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "jam", german: "Marmelade" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "food", german: "Essen; Lebensmittel; Futter" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "biscuit", german: "Plätzchen, Keks" },[cite: 4]
-  { unit: "unit2", sub: "u2_c", foreign: "bread", german: "Brot" },[cite: 5]
-  { unit: "unit2", sub: "u2_c", foreign: "cheese", german: "Käse" },[cite: 5]
-  { unit: "unit2", sub: "u2_c", foreign: "meat", german: "Fleisch" },[cite: 5]
-  { unit: "unit2", sub: "u2_c", foreign: "milk", german: "Milch" },[cite: 5]
-  { unit: "unit2", sub: "u2_c", foreign: "water", german: "Wasser" },[cite: 5]
-  { unit: "unit2", sub: "u2_c", foreign: "other", german: "andere(r, s)" },[cite: 5]
-
-  // Unit 2 – Text & Special days (S. 221–222)
-  { unit: "unit2", sub: "u2_txt", foreign: "(to) remember", german: "sich erinnern (an)" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "present", german: "Geschenk" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "café", german: "Café" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "(to) film", german: "filmen" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "harbour", german: "Hafen" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "seagull", german: "Möwe" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "(to) shout", german: "schreien, rufen" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "suddenly", german: "plötzlich, auf einmal" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "down", german: "hinunter, herunter; nach unten" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "(to) take", german: "nehmen, mitnehmen; (weg-, hin)bringen" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "maybe", german: "vielleicht" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "(to) jump", german: "springen" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "onto the boat", german: "auf das Boot (hinauf)" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "police officer", german: "Polizist/in" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "(to) look happy/angry/...", german: "glücklich/wütend/... aussehen" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "worried", german: "besorgt, beunruhigt" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "hair", german: "Haar, Haare" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "clothes", german: "Kleidung, Kleidungsstücke" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "jeans", german: "Jeans" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "why?", german: "warum?" },[cite: 5]
-  { unit: "unit2", sub: "u2_txt", foreign: "never", german: "nie, niemals" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "(to) be in trouble", german: "in Schwierigkeiten sein; Ärger kriegen" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "story", german: "Geschichte, Erzählung" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "it shows that ...", german: "es zeigt, dass ..." },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "curry", german: "Curry(gericht)" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "special", german: "besondere(r, s)" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "Christmas", german: "Weihnachten" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "Merry Christmas!", german: "Frohe Weihnachten!" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "Christmas Eve", german: "Heiligabend" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "Christmas Day", german: "1. Weihnachtstag (25. Dezember)" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "Boxing Day", german: "2. Weihnachtstag (26. Dezember)" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "light", german: "Licht" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "candle", german: "Kerze" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "turkey", german: "Pute, Truthahn" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "cracker", german: "Knallbonbon" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "That's fun.", german: "Das macht Spaß." },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "paper hat", german: "Papierhut" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "invitation (to)", german: "Einladung (zu, nach)" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "everybody", german: "jeder; alle" },[cite: 6]
-  { unit: "unit2", sub: "u2_txt", foreign: "wish", german: "Wunsch" },[cite: 6]
-
-  // Unit 3 – Einstieg (S. 223)
-  { unit: "unit3", sub: "u3_intro", foreign: "hobby", german: "Hobby" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "some", german: "einige, ein paar; etwas" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "(to) join a club", german: "in einen Klub eintreten; sich einem Klub anschließen" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "more", german: "mehr" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "information (about)", german: "Information(en) (über)" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "4 pm", german: "4 Uhr nachmittags / 16 Uhr" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "4 am", german: "4 Uhr morgens" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "(to) edit", german: "bearbeiten; schneiden (Film, Video)" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "gardening", german: "Gärtnern, Gartenarbeit" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "(to) grow", german: "anbauen, anpflanzen" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "(to) sell", german: "verkaufen" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "kit", german: "Ausrüstung" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "quiet", german: "ruhig, still, leise" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "young", german: "jung" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "(to) choose", german: "aussuchen, (aus)wählen; sich aussuchen" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "area", german: "Bereich; Gebiet, Gegend" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "lunchtime", german: "Mittagszeit" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "instrument", german: "Instrument" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "(to) sing", german: "singen" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "(to) dance", german: "tanzen" },[cite: 7]
-  { unit: "unit3", sub: "u3_intro", foreign: "from ... to ...", german: "von ... bis ..." },[cite: 7]
-
-  // Unit 3 – Part A (S. 223–225)
-  { unit: "unit3", sub: "u3_a", foreign: "(to) get angry/cold/...", german: "wütend/kalt/... werden" },[cite: 7]
-  { unit: "unit3", sub: "u3_a", foreign: "wet", german: "nass" },[cite: 7]
-  { unit: "unit3", sub: "u3_a", foreign: "umbrella", german: "Schirm, Regenschirm" },[cite: 7]
-  { unit: "unit3", sub: "u3_a", foreign: "funny", german: "witzig, komisch" },[cite: 7]
-  { unit: "unit3", sub: "u3_a", foreign: "very funny/wet/...", german: "sehr witzig/nass/..." },[cite: 7]
-  { unit: "unit3", sub: "u3_a", foreign: "joke", german: "Witz" },[cite: 7]
-  { unit: "unit3", sub: "u3_a", foreign: "because", german: "weil" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "really", german: "wirklich" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) have to go/work/...", german: "gehen/arbeiten/... müssen" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "What's the matter?", german: "Was ist denn? / Was ist los?" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "What's she like?", german: "Wie ist sie? / Wie ist sie so?" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) visit", german: "besuchen" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) love", german: "lieben, sehr mögen" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "nothing", german: "(gar) nichts" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "list", german: "Liste" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) want", german: "(haben) wollen" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "work", german: "Arbeit" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) want to do", german: "tun wollen" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) sound", german: "klingen, sich (gut usw.) anhören" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) make friends", german: "Freunde finden" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "activity", german: "Aktivität" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "chess", german: "Schach" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "drum", german: "Trommel" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "piano", german: "Klavier, Piano" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "gymnastics", german: "Gymnastik, Turnen" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "skating", german: "Inlineskaten, Rollschuhlaufen" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "riding", german: "Reiten" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "judo", german: "Judo" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) guess", german: "raten, erraten" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) clean", german: "sauber machen, putzen" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) collect", german: "sammeln" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "free", german: "frei" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) ask sb. to do sth.", german: "jemanden bitten, etwas zu tun" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) try", german: "(aus)probieren; versuchen" },[cite: 8]
-  { unit: "unit3", sub: "u3_a", foreign: "table", german: "Tabelle" },[cite: 9]
-  { unit: "unit3", sub: "u3_a", foreign: "(to) need", german: "brauchen, benötigen" },[cite: 9]
-  { unit: "unit3", sub: "u3_a", foreign: "guitar", german: "Gitarre" },[cite: 9]
-  { unit: "unit3", sub: "u3_a", foreign: "beach", german: "Strand" },[cite: 9]
-  { unit: "unit3", sub: "u3_a", foreign: "outside", german: "draußen; nach draußen" },[cite: 9]
-  { unit: "unit3", sub: "u3_a", foreign: "inside", german: "drinnen; nach drinnen" },[cite: 9]
-  { unit: "unit3", sub: "u3_a", foreign: "jump", german: "Sprung" },[cite: 9]
-  { unit: "unit3", sub: "u3_a", foreign: "letter", german: "Brief" },[cite: 9]
-
-  // Unit 3 – Part B (S. 225–226)
-  { unit: "unit3", sub: "u3_b", foreign: "many", german: "viele" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "much", german: "viel" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "(to) finish sth.", german: "etwas beenden; mit etwas fertig werden/sein" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "Come on, Dad.", german: "Na los, Dad! / Komm, Dad!" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "How are you?", german: "Wie geht's? / Wie geht es dir/euch?" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "Listen, Justin.", german: "Hör zu, Justin." },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "(to) listen", german: "zuhören, horchen" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "job", german: "Job, (Arbeits-)Stelle" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "studio", german: "Studio" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "programme", german: "Programm, (Radio-, Fernseh-)Sendung" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "What programmes ...?", german: "Welche Programme ...? / Welche Art von Programmen ...?" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "midnight", german: "Mitternacht" },[cite: 9]
-  { unit: "unit3", sub: "u3_b", foreign: "too late/cold/big/...", german: "zu spät/kalt/groß/..." },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "(to) get up", german: "aufstehen" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "How do you like it?", german: "Wie findest du es (sie/ihn)? / Wie gefällt es (sie/er) dir?" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "It's about a seagull.", german: "Es geht um eine Möwe. / Es handelt von einer Möwe." },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "(to) send sth. to sb.", german: "jm. etwas schicken, senden" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "idea", german: "Idee; Vorstellung" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "(to) hear", german: "hören" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "I like swimming/sailing/...", german: "Ich schwimme/segele/... gern." },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "partner", german: "Partner/in" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "today", german: "heute" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "(to) phone sb.", german: "jn. anrufen" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "phone call", german: "Anruf; Telefongespräch" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "(to) happen (to)", german: "geschehen, passieren (mit)" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "when", german: "wenn" },[cite: 10]
-  { unit: "unit3", sub: "u3_b", foreign: "no one", german: "niemand" },[cite: 10]
-
-  // Unit 3 – Part C (S. 226–227)
-  { unit: "unit3", sub: "u3_c", foreign: "on Saturday afternoon", german: "am Samstagnachmittag" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) ride a bike", german: "Rad fahren" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "bike", german: "Fahrrad" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) stop", german: "anhalten, stoppen" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "tired", german: "müde" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) be thirsty", german: "durstig sein, Durst haben" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "chocolate", german: "Schokolade" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) turn sth. on", german: "etwas einschalten" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "all of Plymouth", german: "ganz Plymouth, das ganze Plymouth" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "someone", german: "jemand" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "something", german: "etwas" },[cite: 10]
-  { unit: "unit3", sub: "u3_c", foreign: "behind", german: "hinter" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "in front of", german: "vor" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) turn around", german: "sich umdrehen" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "ghost", german: "Geist, Gespenst" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "ready", german: "bereit, fertig" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "loud", german: "laut" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "scary", german: "unheimlich, gruselig" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "traveller", german: "Reisende(r)" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) travel", german: "reisen" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "part", german: "Teil" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) be called", german: "heißen, genannt werden" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "restaurant", german: "Restaurant" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "visitor", german: "Besucher/in, Gast" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "former", german: "ehemalige(r, s), frühere(r, s)" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "floor", german: "Stock(werk)" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) imagine sth.", german: "sich etwas vorstellen" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "life", german: "Leben" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "in 1580", german: "im Jahr 1580" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "child", german: "Kind" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "ticket", german: "Eintrittskarte" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "pound (£)", german: "Pfund (britische Währung)" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) come along", german: "mitkommen, herkommen" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "end", german: "Ende, Schluss" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "letter", german: "Buchstabe" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "capital letter", german: "Großbuchstabe" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) use", german: "benutzen, verwenden" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "etc. (et cetera)", german: "usw. (und so weiter)" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "the same", german: "der-/die-/dasselbe" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "city", german: "Stadt, Großstadt" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "church", german: "Kirche" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "word order", german: "Wortstellung" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "box", german: "Kasten, Kiste, Kästchen" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "address", german: "Adresse, Anschrift" },[cite: 11]
-  { unit: "unit3", sub: "u3_c", foreign: "bus", german: "Bus" },[cite: 12]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) add", german: "hinzufügen, addieren" },[cite: 12]
-  { unit: "unit3", sub: "u3_c", foreign: "consonant", german: "Konsonant, Mitlaut" },[cite: 12]
-  { unit: "unit3", sub: "u3_c", foreign: "ending", german: "Endung" },[cite: 12]
-  { unit: "unit3", sub: "u3_c", foreign: "vowel", german: "Vokal, Selbstlaut" },[cite: 12]
-  { unit: "unit3", sub: "u3_c", foreign: "(to) call", german: "anrufen; rufen; nennen" },[cite: 12]
-  { unit: "unit3", sub: "u3_c", foreign: "stress", german: "Betonung" },[cite: 12]
-
-  // Unit 3 – Text & Shopping (S. 228–229)
-  { unit: "unit3", sub: "u3_txt", foreign: "(to) take place", german: "stattfinden; spielen, sich abspielen (Geschichte, Handlung)" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "sound", german: "Geräusch; Klang" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "attic", german: "Dachboden" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "boring", german: "langweilig" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "mouth", german: "Mund; Maul" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "diary", german: "Tagebuch; Kalender" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "sick", german: "krank" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "money", german: "Geld" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "(to) hope", german: "hoffen" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "bottle", german: "Flasche" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "(to) smell", german: "riechen" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "Me too.", german: "Ich auch." },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "out of ...", german: "aus ... (heraus/hinaus)" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "moon", german: "Mond" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "(to) walk", german: "(zu Fuß) gehen" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "along the street/the river/...", german: "die Straße / den Fluss / ... entlang" },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "Oh, it's you.", german: "Ach, du bist es." },[cite: 12]
-  { unit: "unit3", sub: "u3_txt", foreign: "(to) bark", german: "bellen" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "step", german: "Schritt" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "voice", german: "Stimme" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "thief", german: "Dieb/in" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "hand", german: "Hand" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "(to) fight", german: "kämpfen" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "coin", german: "Münze" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "(to) taste", german: "schmecken" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "dream", german: "Traum" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "perfect", german: "perfekt, ideal" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "(to) understand", german: "verstehen" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "junior team", german: "Jugendmannschaft, Juniorenmannschaft" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "trumpet", german: "Trompete" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "tomato", german: "Tomate" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "age", german: "Alter" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "pence (p)", german: "Pence (Plural von „penny“)" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "felt pen", german: "Filzstift" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "shopping centre", german: "Einkaufszentrum" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "supermarket", german: "Supermarkt" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "closed", german: "geschlossen" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "Easter", german: "Ostern" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "They're £2.75 each.", german: "Sie kosten je 2 Pfund 75. (2,75 pro Stück)" },[cite: 13]
-  { unit: "unit3", sub: "u3_txt", foreign: "size", german: "Größe" }[cite: 13]
-];
+  { unit: "unit2", sub: "u2_a", foreign: "(to) wake up", german: "aufwachen" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) have breakfast", german: "frühstücken" },
+  { unit: "unit2", sub: "u2_a", foreign: "a plate of ...", german: "ein Teller ..." },
+  { unit: "unit2", sub: "u2_a", foreign: "crab", german: "Krebs" },
+  { unit: "unit2", sub: "u2_a", foreign: "in the afternoon", german: "nachmittags, am Nachmittag" },
+  { unit: "unit2", sub: "u2_a", foreign: "in the evening", german: "abends, am Abend" },
+  { unit: "unit2", sub: "u2_a", foreign: "in the morning", german: "morgens, am Morgen" },
+  { unit: "unit2", sub: "u2_a", foreign: "on Monday", german: "am Montag" },
+  { unit: "unit2", sub: "u2_a", foreign: "on Mondays", german: "montags, an Montagen" },
+  { unit: "unit2", sub: "u2_a", foreign: "fish", german: "Fisch" },
+  { unit: "unit2", sub: "u2_a", foreign: "dinner", german: "Abendessen, Abendbrot" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) have lunch", german: "zu Mittag essen" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) have dinner", german: "zu Abend essen" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) sit", german: "sitzen; sich setzen" },
+  { unit: "unit2", sub: "u2_a", foreign: "rock", german: "Fels, Felsen" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) text a friend", german: "einem Freund / einer Freundin eine SMS schicken" },
+  { unit: "unit2", sub: "u2_a", foreign: "after that", german: "danach" },
+  { unit: "unit2", sub: "u2_a", foreign: "her", german: "sie; ihr" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) go sailing", german: "segeln; segeln gehen" },
+  { unit: "unit2", sub: "u2_a", foreign: "into the kitchen", german: "in die Küche (hinein)" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) make", german: "machen; herstellen" },
+  { unit: "unit2", sub: "u2_a", foreign: "a cup of ...", german: "eine Tasse ..." },
+  { unit: "unit2", sub: "u2_a", foreign: "tea", german: "Tee" },
+  { unit: "unit2", sub: "u2_a", foreign: "paper", german: "Papier; Zeitung" },
+  { unit: "unit2", sub: "u2_a", foreign: "at the weekend", german: "am Wochenende" },
+  { unit: "unit2", sub: "u2_a", foreign: "at night", german: "nachts, in der Nacht" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) sleep", german: "schlafen" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) feed", german: "füttern" },
+  { unit: "unit2", sub: "u2_a", foreign: "no ...", german: "kein ..., keine ..." },
+  { unit: "unit2", sub: "u2_a", foreign: "us", german: "uns" },
+  { unit: "unit2", sub: "u2_a", foreign: "of course", german: "natürlich, selbstverständlich" },
+  { unit: "unit2", sub: "u2_a", foreign: "basket", german: "Korb" },
+  { unit: "unit2", sub: "u2_a", foreign: "floor", german: "Fußboden" },
+  { unit: "unit2", sub: "u2_a", foreign: "trophy", german: "Pokal; Trophäe" },
+  { unit: "unit2", sub: "u2_a", foreign: "away", german: "weg, fort" },
+  { unit: "unit2", sub: "u2_a", foreign: "mad", german: "verrückt" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) think", german: "denken, glauben" },
+  { unit: "unit2", sub: "u2_a", foreign: "so cool/nice/...", german: "so cool/nett/..." },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) go for a walk", german: "einen Spaziergang machen, spazieren gehen" },
+  { unit: "unit2", sub: "u2_a", foreign: "person", german: "Person" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) run", german: "rennen, laufen" },
+  { unit: "unit2", sub: "u2_a", foreign: "(to) go shopping", german: "einkaufen gehen" },
+  { unit:
