@@ -138,6 +138,7 @@
     .btn-next { background-color: #10b981; margin-top: 10px; }
     .btn-next:hover { background-color: #059669; }
 
+    /* Lernmodus Styles */
     .learn-container {
       text-align: left;
       margin-bottom: 15px;
@@ -248,7 +249,9 @@
     </div>
 
     <label id="select-label" for="unit-select">3. Bereich auswählen:</label>
-    <select id="unit-select"></select>
+    <select id="unit-select">
+      <!-- Wird dynamisch per JS befüllt -->
+    </select>
 
     <button id="start-btn" class="action-btn" onclick="startApp()">Starten 🚀</button>
   </div>
@@ -273,7 +276,9 @@
             <th>Deutsch</th>
           </tr>
         </thead>
-        <tbody id="learn-table-body"></tbody>
+        <tbody id="learn-table-body">
+          <!-- Zeilen werden per JS geladen -->
+        </tbody>
       </table>
     </div>
     <div class="pagination-row">
@@ -316,12 +321,13 @@
   </div>
 </div>
 
+<!-- Externe Wortschatz-Datei einbinden -->
 <script src="englisch.js"></script>
 
 <script>
-  let appMode = 'learn';
-  let structMode = 'single';
-  let hiddenColumn = null;
+  let appMode = 'learn';       // 'learn' oder 'quiz'
+  let structMode = 'single';   // 'single' oder 'unit'
+  let hiddenColumn = null;     // null, 'de' oder 'foreign'
 
   let activeVocabList = [];
   let currentLearnPage = 0;
@@ -367,15 +373,22 @@
 
     if (structMode === 'single') {
       const sections = [
-        { val: "u2_intro", label: "Unit 2 – Einstieg (Rooms & House)" },
-        { val: "u2_a", label: "Unit 2 – Part A" },
-        { val: "u2_b", label: "Unit 2 – Part B" },
-        { val: "u2_c", label: "Unit 2 – Part C" },
-        { val: "u2_txt", label: "Unit 2 – Text & Special days" },
-        { val: "u3_intro", label: "Unit 3 – Clubs and hobbies" },
-        { val: "u3_a", label: "Unit 3 – Part A" },
-        { val: "u3_b", label: "Unit 3 – Part B" },
-        { val: "u3_c", label: "Unit 3 – Part C" }
+        { val: "gs_1", label: "Grundschulwortschatz (S. 202–203)" },
+        { val: "hwg_1", label: "Here we go (S. 204–207)" },
+        { val: "u1_1", label: "Unit 1 – The first day at school (S. 210)" },
+        { val: "u1_a", label: "Unit 1 – Part A (S. 211–212)" },
+        { val: "u1_b", label: "Unit 1 – Part B (S. 212–214)" },
+        { val: "u1_c", label: "Unit 1 – Part C & Text (S. 214–215)" },
+        { val: "u2_intro", label: "Unit 2 – Einstieg (S. 217)" },
+        { val: "u2_a", label: "Unit 2 – Part A (S. 217–219)" },
+        { val: "u2_b", label: "Unit 2 – Part B (S. 219)" },
+        { val: "u2_c", label: "Unit 2 – Part C (S. 220–221)" },
+        { val: "u2_txt", label: "Unit 2 – Text & Special days (S. 221–222)" },
+        { val: "u3_intro", label: "Unit 3 – Clubs and hobbies (Einstieg, S. 223)" },
+        { val: "u3_a", label: "Unit 3 – Part A (S. 223–225)" },
+        { val: "u3_b", label: "Unit 3 – Part B (S. 225–226)" },
+        { val: "u3_c", label: "Unit 3 – Part C (S. 226–227)" },
+        { val: "u3_txt", label: "Unit 3 – Text & Shopping (S. 228–229)" }
       ];
 
       sections.forEach(sec => {
@@ -386,8 +399,11 @@
       });
     } else {
       const units = [
-        { val: "unit2", label: "Unit 2 (Ganze Unit)" },
-        { val: "unit3", label: "Unit 3 – Clubs and hobbies (Ganze Unit)" }
+        { val: "grundschule", label: "Grundschulwortschatz (Komplett, S. 202–203)" },
+        { val: "here_we_go", label: "Here we go (Komplett, S. 204–207)" },
+        { val: "unit1", label: "Unit 1 (Komplett, S. 210–215)" },
+        { val: "unit2", label: "Unit 2 (Ganze Unit, S. 217–222)" },
+        { val: "unit3", label: "Unit 3 – Clubs and hobbies (Ganze Unit, S. 223–229)" }
       ];
 
       units.forEach(u => {
@@ -775,6 +791,7 @@
     }
   });
 
+  // Initialisierung beim Laden
   updateDropdownOptions();
 </script>
 
