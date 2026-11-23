@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vokabel-Trainer - Englisch</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+    .card {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 22px;
+      margin: 0 0 15px 0;
+      color: #1e293b;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #475569;
+    }
+    .credits {
+      color: #e11d48;
+      background: #ffe4e6;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .filter-box {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .filter-box label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      color: #475569;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+    .mode-switch {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .mode-btn {
+      flex: 1;
+      padding: 8px;
+      font-size: 12px;
+      font-weight: bold;
+      border: 1px solid #cbd5e1;
+      background-color: #f8fafc;
+      color: #475569;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .mode-btn.active {
+      background-color: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 13px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background-color: #f8fafc;
+      color: #0f172a;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+    .word-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 12px 0 18px 0;
+    }
+    .lang-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 12px;
+      letter-spacing: 0.8px;
+    }
+    .lang-en { background-color: #dbeafe; color: #1e40af; }
+    .lang-de { background-color: #fef3c7; color: #92400e; }
+    .word-box h2 {
+      margin: 12px 0 0 0;
+      font-size: 20px;
+      color: #0f172a;
+      word-wrap: break-word;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+    }
+    .action-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background-color: #2563eb;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .action-btn:hover:not(:disabled) { background-color: #1d4ed8; }
+    .btn-next { background-color: #10b981; margin-top: 10px; }
+    .btn-next:hover { background-color: #059669; }
+
+    .learn-container {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+    .vocab-table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+    .vocab-table th, .vocab-table td {
+      border: 1px solid #e2e8f0;
+      padding: 10px;
+      font-size: 14px;
+      width: 50%;
+      word-wrap: break-word;
+      overflow: hidden;
+    }
+    .vocab-table th {
+      background-color: #f8fafc;
+      color: #475569;
+    }
+    .hidden-col {
+      color: transparent;
+      background-color: #e2e8f0;
+      border-radius: 4px;
+      user-select: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .hidden-col:hover {
+      background-color: #cbd5e1;
+    }
+    .pagination-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .secondary-btn {
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      background-color: #64748b;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .secondary-btn:disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+    }
+    .secondary-btn:hover:not(:disabled) { background-color: #475569; }
+
+    .mc-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .mc-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      background-color: #f8fafc;
+      color: #0f172a;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      text-align: left;
+      padding-left: 15px;
+      transition: all 0.15s;
+    }
+    .mc-btn:hover:not(:disabled) {
+      border-color: #2563eb;
+      background-color: #eff6ff;
+    }
+    .mc-btn.correct { background-color: #d1fae5; border-color: #10b981; color: #065f46; font-weight: bold; }
+    .mc-btn.wrong { background-color: #fee2e2; border-color: #ef4444; color: #991b1b; }
+
+    .feedback {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 15px;
+      min-height: 22px;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1 id="app-title">Vokabel-Trainer 📚</h1>
+
+  <!-- Auswahl-Menü -->
+  <div id="menu-area" class="filter-box">
+    <label>1. Modus wählen:</label>
+    <div class="mode-switch">
+      <button id="btn-app-learn" class="mode-btn active" onclick="setAppMode('learn')">📖 Lernmodus (Vorschau)</button>
+      <button id="btn-app-quiz" class="mode-btn" onclick="setAppMode('quiz')">✍️ Abfragemodus</button>
+    </div>
+
+    <label>2. Struktur wählen:</label>
+    <div class="mode-switch">
+      <button id="btn-struct-single" class="mode-btn active" onclick="setStructMode('single')">Einzelner Teil</button>
+      <button id="btn-struct-unit" class="mode-btn" onclick="setStructMode('unit')">Ganze Unit komplett</button>
+    </div>
+
+    <label id="select-label" for="unit-select">3. Bereich auswählen:</label>
+    <select id="unit-select"></select>
+
+    <button id="start-btn" class="action-btn" onclick="startApp()">Starten 🚀</button>
+  </div>
+
+  <!-- Lernmodus-Ansicht -->
+  <div id="learn-area" class="hidden">
+    <div class="top-bar">
+      <span id="learn-page-info">Seiteninfo</span>
+      <span id="learn-total-info" style="color: #64748b; font-size: 12px;"></span>
+    </div>
+
+    <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+      <button id="btn-hide-de" class="secondary-btn" style="flex: 1; background-color: #0284c7; font-size: 12px; padding: 8px;" onclick="toggleHideColumn('de')">🙈 Deutsch ausblenden</button>
+      <button id="btn-hide-foreign" class="secondary-btn" style="flex: 1; background-color: #0284c7; font-size: 12px; padding: 8px;" onclick="toggleHideColumn('foreign')">🙈 Englisch ausblenden</button>
+    </div>
+
+    <div class="learn-container">
+      <table class="vocab-table">
+        <thead>
+          <tr>
+            <th>Englisch</th>
+            <th>Deutsch</th>
+          </tr>
+        </thead>
+        <tbody id="learn-table-body"></tbody>
+      </table>
+    </div>
+    <div class="pagination-row">
+      <button id="prev-page-btn" class="secondary-btn" onclick="changeLearnPage(-1)">⬅️ Zurück</button>
+      <button id="next-page-btn" class="secondary-btn" onclick="changeLearnPage(1)">Weiter ➡️</button>
+    </div>
+    <button class="action-btn btn-next" onclick="switchToQuizFromLearn()">Zur Abfrage wechseln ✍️</button>
+    <button class="secondary-btn" style="width: 100%; margin-top: 10px; background-color: #94a3b8;" onclick="resetToMenu()">Zurück zum Menü</button>
+  </div>
+
+  <!-- Abfrage-Modus (Quiz) -->
+  <div id="quiz-area" class="hidden">
+    <div class="top-bar">
+      <span id="progress">Frage 1 von 25</span>
+      <span id="credits-display" class="credits">❤️ Credits: 4</span>
+    </div>
+
+    <div class="word-box">
+      <span id="lang-label" class="lang-badge lang-de">Deutsch</span>
+      <h2 id="prompt-word"></h2>
+    </div>
+
+    <div id="type-area">
+      <input type="text" id="answer-input" placeholder="Übersetzung eingeben..." autocomplete="off">
+      <button id="check-btn" class="action-btn" onclick="checkTypedAnswer()">Prüfen</button>
+    </div>
+
+    <div id="mc-area" class="mc-options hidden"></div>
+
+    <p id="feedback" class="feedback"></p>
+    <button id="next-btn" class="action-btn btn-next hidden" onclick="nextWord()">Nächste Vokabel</button>
+    <button class="secondary-btn" style="width: 100%; margin-top: 15px; background-color: #94a3b8;" onclick="resetToMenu()">Zurück zum Menü</button>
+  </div>
+
+  <!-- Ergebnis-Ansicht -->
+  <div id="result-area" class="hidden">
+    <h2 id="result-title">Geschafft! 🏆</h2>
+    <p id="score-text" style="font-size: 18px; margin: 20px 0;"></p>
+    <button class="action-btn" onclick="resetToMenu()">Zurück zum Menü</button>
+  </div>
+</div>
+
+<script src="englisch.js"></script>
+
+<script>
+  let appMode = 'learn';
+  let structMode = 'single';
+  let hiddenColumn = null;
+
+  let activeVocabList = [];
+  let currentLearnPage = 0;
+  const itemsPerPage = 6;
+
+  let currentIndex = 0;
+  let score = 0;
+  let credits = 4;
+  let isDeToForeign = true;
+  let isMcMode = false;
+
+  const unitSelect = document.getElementById('unit-select');
+  const progressEl = document.getElementById('progress');
+  const creditsDisplay = document.getElementById('credits-display');
+  const langLabelEl = document.getElementById('lang-label');
+  const promptWordEl = document.getElementById('prompt-word');
+  const typeArea = document.getElementById('type-area');
+  const mcArea = document.getElementById('mc-area');
+  const inputEl = document.getElementById('answer-input');
+  const checkBtn = document.getElementById('check-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const feedbackEl = document.getElementById('feedback');
+
+  function getActiveDictionary() {
+    return typeof englishVocab !== 'undefined' ? englishVocab : [];
+  }
+
+  function setAppMode(mode) {
+    appMode = mode;
+    document.getElementById('btn-app-learn').classList.toggle('active', mode === 'learn');
+    document.getElementById('btn-app-quiz').classList.toggle('active', mode === 'quiz');
+  }
+
+  function setStructMode(mode) {
+    structMode = mode;
+    document.getElementById('btn-struct-single').classList.toggle('active', mode === 'single');
+    document.getElementById('btn-struct-unit').classList.toggle('active', mode === 'unit');
+    updateDropdownOptions();
+  }
+
+  function updateDropdownOptions() {
+    unitSelect.innerHTML = '';
+
+    if (structMode === 'single') {
+      const sections = [
+        { val: "u2_intro", label: "Unit 2 – Einstieg (Rooms & House)" },
+        { val: "u2_a", label: "Unit 2 – Part A" },
+        { val: "u2_b", label: "Unit 2 – Part B" },
+        { val: "u2_c", label: "Unit 2 – Part C" },
+        { val: "u2_txt", label: "Unit 2 – Text & Special days" },
+        { val: "u3_intro", label: "Unit 3 – Clubs and hobbies" },
+        { val: "u3_a", label: "Unit 3 – Part A" },
+        { val: "u3_b", label: "Unit 3 – Part B" },
+        { val: "u3_c", label: "Unit 3 – Part C" }
+      ];
+
+      sections.forEach(sec => {
+        const opt = document.createElement('option');
+        opt.value = sec.val;
+        opt.textContent = sec.label;
+        unitSelect.appendChild(opt);
+      });
+    } else {
+      const units = [
+        { val: "unit2", label: "Unit 2 (Ganze Unit)" },
+        { val: "unit3", label: "Unit 3 – Clubs and hobbies (Ganze Unit)" }
+      ];
+
+      units.forEach(u => {
+        const opt = document.createElement('option');
+        opt.value = u.val;
+        opt.textContent = u.label;
+        unitSelect.appendChild(opt);
+      });
+    }
+  }
+
+  function isSentence(text) {
+    if (text.includes('/')) return false;
+    return text.includes(' ') || text.includes('.') || text.includes('!') || text.includes('?');
+  }
+
+  function isItemSentence(vocabItem) {
+    return isSentence(vocabItem.foreign) || isSentence(vocabItem.german);
+  }
+
+  function startApp() {
+    const dict = getActiveDictionary();
+    if (dict.length === 0) {
+      alert('Der Wortschatz konnte nicht geladen werden! Bitte prüfe, ob die Datei "englisch.js" im selben Ordner wie index.html liegt.');
+      return;
+    }
+
+    const selection = unitSelect.value;
+    let pool = structMode === 'single'
+      ? dict.filter(v => v.sub === selection)
+      : dict.filter(v => v.unit === selection);
+
+    if (pool.length === 0) {
+      pool = [...dict];
+    }
+
+    activeVocabList = [...pool];
+    hiddenColumn = null;
+    updateHideButtonsUI();
+
+    document.getElementById('menu-area').classList.add('hidden');
+
+    if (appMode === 'learn') {
+      currentLearnPage = 0;
+      document.getElementById('learn-area').classList.remove('hidden');
+      renderLearnPage();
+    } else {
+      activeVocabList.sort(() => Math.random() - 0.5);
+      activeVocabList = activeVocabList.slice(0, 25).map(item => ({ ...item, nearMissCount: 0 }));
+      document.getElementById('quiz-area').classList.remove('hidden');
+      restartQuiz();
+    }
+  }
+
+  function toggleHideColumn(col) {
+    hiddenColumn = hiddenColumn === col ? null : col;
+    updateHideButtonsUI();
+    renderLearnPage();
+  }
+
+  function updateHideButtonsUI() {
+    const btnDe = document.getElementById('btn-hide-de');
+    const btnForeign = document.getElementById('btn-hide-foreign');
+
+    if (hiddenColumn === 'de') {
+      btnDe.textContent = "👁️ Deutsch einblenden";
+      btnDe.style.backgroundColor = "#d97706";
+    } else {
+      btnDe.textContent = "🙈 Deutsch ausblenden";
+      btnDe.style.backgroundColor = "#0284c7";
+    }
+
+    if (hiddenColumn === 'foreign') {
+      btnForeign.textContent = "👁️ Englisch einblenden";
+      btnForeign.style.backgroundColor = "#d97706";
+    } else {
+      btnForeign.textContent = "🙈 Englisch ausblenden";
+      btnForeign.style.backgroundColor = "#0284c7";
+    }
+  }
+
+  function revealCell(cell) {
+    cell.classList.remove('hidden-col');
+  }
+
+  function renderLearnPage() {
+    const tableBody = document.getElementById('learn-table-body');
+    tableBody.innerHTML = '';
+
+    const start = currentLearnPage * itemsPerPage;
+    const end = Math.min(start + itemsPerPage, activeVocabList.length);
+    const pageItems = activeVocabList.slice(start, end);
+
+    pageItems.forEach(item => {
+      const tr = document.createElement('tr');
+
+      const tdForeign = document.createElement('td');
+      tdForeign.innerHTML = `<strong>${item.foreign}</strong>`;
+      if (hiddenColumn === 'foreign') {
+        tdForeign.className = 'hidden-col';
+        tdForeign.title = "Klicken zum Aufdecken";
+        tdForeign.onclick = function() { revealCell(this); };
+      }
+
+      const tdDe = document.createElement('td');
+      tdDe.textContent = item.german;
+      if (hiddenColumn === 'de') {
+        tdDe.className = 'hidden-col';
+        tdDe.title = "Klicken zum Aufdecken";
+        tdDe.onclick = function() { revealCell(this); };
+      }
+
+      tr.appendChild(tdForeign);
+      tr.appendChild(tdDe);
+      tableBody.appendChild(tr);
+    });
+
+    const totalPages = Math.ceil(activeVocabList.length / itemsPerPage);
+    document.getElementById('learn-page-info').textContent = `Seite ${currentLearnPage + 1} von ${totalPages}`;
+    document.getElementById('learn-total-info').textContent = `(Gesamt: ${activeVocabList.length} Vokabeln)`;
+
+    document.getElementById('prev-page-btn').disabled = currentLearnPage === 0;
+    document.getElementById('next-page-btn').disabled = end >= activeVocabList.length;
+  }
+
+  function changeLearnPage(direction) {
+    currentLearnPage += direction;
+    renderLearnPage();
+  }
+
+  function switchToQuizFromLearn() {
+    document.getElementById('learn-area').classList.add('hidden');
+    document.getElementById('quiz-area').classList.remove('hidden');
+
+    activeVocabList.sort(() => Math.random() - 0.5);
+    activeVocabList = activeVocabList.slice(0, 25).map(item => ({ ...item, nearMissCount: 0 }));
+    restartQuiz();
+  }
+
+  function resetToMenu() {
+    document.getElementById('menu-area').classList.remove('hidden');
+    document.getElementById('learn-area').classList.add('hidden');
+    document.getElementById('quiz-area').classList.add('hidden');
+    document.getElementById('result-area').classList.add('hidden');
+  }
+
+  function restartQuiz() {
+    currentIndex = 0;
+    score = 0;
+    credits = 4;
+    updateCreditsDisplay();
+    loadWord();
+  }
+
+  function updateCreditsDisplay() {
+    creditsDisplay.textContent = `❤️ Credits: ${credits}`;
+  }
+
+  function getValidMeanings(answerText) {
+    const parts = answerText.split(/[,;/]/).map(s => s.trim()).filter(Boolean);
+    const meanings = new Set();
+
+    parts.forEach(part => {
+      const lower = part.toLowerCase();
+      meanings.add(lower);
+
+      if (lower.includes('(')) {
+        const withoutParens = lower.replace(/\([^)]*\)/g, '').trim();
+        if (withoutParens) meanings.add(withoutParens);
+      }
+    });
+
+    return Array.from(meanings);
+  }
+
+  function getEditDistance(a, b) {
+    const m = a.length;
+    const n = b.length;
+    const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+
+    for (let i = 0; i <= m; i++) dp[i][0] = i;
+    for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        dp[i][j] = Math.min(
+          dp[i - 1][j] + 1,
+          dp[i][j - 1] + 1,
+          dp[i - 1][j - 1] + cost
+        );
+        if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) {
+          dp[i][j] = Math.min(dp[i][j], dp[i - 2][j - 2] + 1);
+        }
+      }
+    }
+    return dp[m][n];
+  }
+
+  function loadWord() {
+    if (credits <= 0) {
+      endGame(false);
+      return;
+    }
+
+    const current = activeVocabList[currentIndex];
+    progressEl.textContent = `Frage ${currentIndex + 1} von ${activeVocabList.length}`;
+    feedbackEl.textContent = '';
+    nextBtn.classList.add('hidden');
+
+    isDeToForeign = Math.random() < 0.80;
+    isMcMode = isItemSentence(current) ? true : (Math.random() < 0.30);
+
+    const questionText = isDeToForeign ? current.german : current.foreign;
+    const expectedAnswer = isDeToForeign ? current.foreign : current.german;
+
+    if (isDeToForeign) {
+      langLabelEl.textContent = 'Deutsch';
+      langLabelEl.className = 'lang-badge lang-de';
+      inputEl.placeholder = 'Englische Übersetzung...';
+    } else {
+      langLabelEl.textContent = 'Englisch';
+      langLabelEl.className = 'lang-badge lang-en';
+      inputEl.placeholder = 'Deutsche Übersetzung...';
+    }
+
+    promptWordEl.textContent = questionText;
+
+    if (!isMcMode) {
+      typeArea.classList.remove('hidden');
+      mcArea.classList.add('hidden');
+      inputEl.value = '';
+      inputEl.disabled = false;
+      checkBtn.classList.remove('hidden');
+      inputEl.focus();
+    } else {
+      typeArea.classList.add('hidden');
+      mcArea.classList.remove('hidden');
+      generateMultipleChoice(expectedAnswer);
+    }
+  }
+
+  function generateMultipleChoice(correctAnswer) {
+    mcArea.innerHTML = '';
+    const dict = getActiveDictionary();
+    const targetIsSentence = isSentence(correctAnswer);
+
+    const wrongOptions = dict
+      .map(item => isDeToForeign ? item.foreign : item.german)
+      .filter(word => word !== correctAnswer && isSentence(word) === targetIsSentence && !word.includes(','));
+
+    const poolToUse = wrongOptions.length >= 2
+      ? [...new Set(wrongOptions)]
+      : [...new Set(dict.map(item => isDeToForeign ? item.foreign : item.german).filter(w => w !== correctAnswer && isSentence(w) === targetIsSentence))];
+
+    poolToUse.sort(() => Math.random() - 0.5);
+
+    const selectedOptions = [correctAnswer, ...poolToUse.slice(0, 2)];
+    selectedOptions.sort(() => Math.random() - 0.5);
+
+    selectedOptions.forEach(option => {
+      const btn = document.createElement('button');
+      btn.className = 'mc-btn';
+      btn.textContent = option;
+      btn.onclick = () => checkMcAnswer(btn, option, correctAnswer);
+      mcArea.appendChild(btn);
+    });
+  }
+
+  function checkMcAnswer(clickedBtn, selectedOption, correctAnswer) {
+    const allButtons = mcArea.querySelectorAll('.mc-btn');
+    allButtons.forEach(btn => {
+      btn.disabled = true;
+      if (btn.textContent === correctAnswer) {
+        btn.classList.add('correct');
+      }
+    });
+
+    if (selectedOption === correctAnswer) {
+      feedbackEl.textContent = 'Richtig! 🎉';
+      feedbackEl.style.color = '#10b981';
+      score++;
+    } else {
+      clickedBtn.classList.add('wrong');
+      credits--;
+      updateCreditsDisplay();
+      feedbackEl.textContent = `Falsch! Richtig ist: "${correctAnswer}"`;
+      feedbackEl.style.color = '#ef4444';
+    }
+
+    if (credits <= 0) {
+      nextBtn.classList.add('hidden');
+      setTimeout(() => endGame(false), 1500);
+    } else {
+      nextBtn.classList.remove('hidden');
+    }
+  }
+
+  function checkTypedAnswer() {
+    const userAnswer = inputEl.value.trim().toLowerCase();
+    const currentVocab = activeVocabList[currentIndex];
+    const originalCorrect = isDeToForeign ? currentVocab.foreign : currentVocab.german;
+
+    if (userAnswer === '') return;
+
+    inputEl.disabled = true;
+    checkBtn.classList.add('hidden');
+
+    const validMeanings = getValidMeanings(originalCorrect);
+    const isExactMatch = validMeanings.includes(userAnswer);
+
+    let isNearMatch = false;
+    if (!isExactMatch && userAnswer.length >= 2) {
+      isNearMatch = validMeanings.some(meaning => meaning.length >= 3 && getEditDistance(userAnswer, meaning) === 1);
+    }
+
+    if (isExactMatch) {
+      feedbackEl.textContent = 'Richtig! 🎉';
+      feedbackEl.style.color = '#10b981';
+      score++;
+      nextBtn.classList.remove('hidden');
+    } else if (isNearMatch) {
+      if (currentVocab.nearMissCount === 0) {
+        currentVocab.nearMissCount = 1;
+        activeVocabList.push({ ...currentVocab });
+        feedbackEl.textContent = `Fast richtig! ✍️ (Richtig: "${originalCorrect}"). Wir üben das gleich noch mal!`;
+        feedbackEl.style.color = '#d97706';
+        nextBtn.classList.remove('hidden');
+      } else {
+        credits--;
+        updateCreditsDisplay();
+        feedbackEl.textContent = `Schon wieder ein Tippfehler! ❌ (Richtig wäre: "${originalCorrect}")`;
+        feedbackEl.style.color = '#ef4444';
+
+        if (credits <= 0) {
+          nextBtn.classList.add('hidden');
+          setTimeout(() => endGame(false), 1500);
+        } else {
+          nextBtn.classList.remove('hidden');
+        }
+      }
+    } else {
+      credits--;
+      updateCreditsDisplay();
+      feedbackEl.textContent = `Falsch! Richtig wäre: "${originalCorrect}"`;
+      feedbackEl.style.color = '#ef4444';
+
+      if (credits <= 0) {
+        nextBtn.classList.add('hidden');
+        setTimeout(() => endGame(false), 1500);
+      } else {
+        nextBtn.classList.remove('hidden');
+      }
+    }
+  }
+
+  function nextWord() {
+    currentIndex++;
+    if (currentIndex < activeVocabList.length) {
+      loadWord();
+    } else {
+      endGame(true);
+    }
+  }
+
+  function endGame(success) {
+    document.getElementById('quiz-area').classList.add('hidden');
+    document.getElementById('result-area').classList.remove('hidden');
+
+    const titleEl = document.getElementById('result-title');
+    const scoreTextEl = document.getElementById('score-text');
+
+    if (success) {
+      titleEl.textContent = "Geschafft! 🏆";
+      scoreTextEl.textContent = `Super! Du hast den Durchgang mit ${credits} verbleibenden Credit(s) beendet!`;
+    } else {
+      titleEl.textContent = "Game Over ❌";
+      scoreTextEl.textContent = `Keine Credits mehr übrig! Du bist bei Frage ${currentIndex + 1} ausgeschieden. Versuch es noch einmal!`;
+    }
+  }
+
+  inputEl.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && !isMcMode && !checkBtn.classList.contains('hidden')) {
+      checkTypedAnswer();
+    }
+  });
+
+  updateDropdownOptions();
+</script>
+
+</body>
+</html>
